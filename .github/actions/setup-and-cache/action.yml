@@ -1,0 +1,34 @@
+name: Setup and cache
+description: Setup for node, pnpm and cache
+inputs:
+  node-version:
+    required: false
+    description: Node version for setup-node
+    default: 18.x
+
+runs:
+  using: composite
+
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2.2.4
+
+    - name: Set node version to ${{ inputs.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Get pnpm store directory
+      id: pnpm_cache
+      shell: bash
+      run: |
+        echo "PNPM_CACHE_DIR=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+    - name: Set pnpm cache store
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.pnpm_cache.outputs.PNPM_CACHE_DIR }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+

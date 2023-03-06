@@ -1,0 +1,14 @@
+{
+  "name": "@project/eslint-config-antfu",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "@antfu/eslint-config": "^0.35.3",
+    "eslint": "^8.35.0",
+    "eslint-config-turbo": "^0.0.8"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}

@@ -1,0 +1,12 @@
+# apps/nuxt-website netlify.toml
+
+[build.environment]
+  NODE_VERSION = "18.12.0"
+  PNPM_FLAGS = "--shamefully-hoist"
+
+[build]
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
+  
+  base = "apps/nuxt-website"
+  publish = "apps/nuxt-website/dist"
+  command = "pnpm install --frozen-lockfile && pnpm build"

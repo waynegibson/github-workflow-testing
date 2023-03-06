@@ -1,0 +1,14 @@
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+dist
+
+# local netlify folder
+.netlify
+
+# custom
+/src/pages/mock*.vue
